@@ -1,4 +1,4 @@
-version: "2.2"
+version: "3"
 services:
   web:
     build: .
@@ -7,4 +7,22 @@ services:
       - "9000:9000"
     environment:
       WEB_DOCUMENT_ROOT: "/app/public"
+      DB_HOST: mysql
     tty: true
+    networks:
+      - dujiaka
+  mysql:
+    restart: always
+    image: mysql:5.7.18
+    container_name: mysql-lable
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root"
+      - "MYSQL_DATABASE=web"
+      - "TZ=Asia/Shanghai"
+    ports:
+      - 3306:3306
+    networks:
+      - dujiaka
+networks:
+  dujiaka:
+    driver: bridge
