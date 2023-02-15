@@ -20,7 +20,19 @@ services:
       - "MYSQL_DATABASE=web"
       - "TZ=Asia/Shanghai"
     ports:
-      - 3306:3306
+      - 3307:3306
+    networks:
+      - dujiaka
+  redis:
+    container_name: redis
+    image: redis:6.0.6
+    restart: always
+    ports:
+      - 6379:6379
+    privileged: true
+    command: redis-server /etc/redis/redis.conf --appendonly yes
+    volumes:
+      - ./redis.conf:/etc/redis/redis.conf
     networks:
       - dujiaka
 networks:
