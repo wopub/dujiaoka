@@ -17,10 +17,10 @@ services:
     container_name: mysql-lable
     environment:
       - "MYSQL_ROOT_PASSWORD=root"
-      - "MYSQL_DATABASE=web"
+      - "MYSQL_DATABASE=dujiaoka"
       - "TZ=Asia/Shanghai"
     ports:
-      - 3307:3306
+      - 3306:3306
     networks:
       - dujiaka
   redis:
